@@ -6,6 +6,7 @@
  *
  * You should have received a copy of the CC0 Public Domain Dedication along with this software. If not, see <http://creativecommons.org/publicdomain/zero/1.0/>.
  */
+var haveEvents = 'GamepadEvent' in window;
 var controllers = {};
 var rAF = window.mozRequestAnimationFrame ||
   window.webkitRequestAnimationFrame ||
@@ -58,7 +59,7 @@ function removegamepad(gamepad) {
 }
 
 function updateStatus() {
-  if (navigator.webkitGetGamepads) {
+  if (!haveEvents) {
     scangamepads();
   }
   for (j in controllers) {
@@ -93,7 +94,7 @@ function updateStatus() {
 }
 
 function scangamepads() {
-  var gamepads = navigator.webkitGetGamepads();
+  var gamepads = navigator.getGamepads ? navigator.getGamepads() : (navigator.webkitGetGamepads ? navigator.webkitGetGamepads() : []);
   for (var i = 0; i < gamepads.length; i++) {
     if (gamepads[i]) {
       if (!(gamepads[i].index in controllers)) {
@@ -107,6 +108,6 @@ function scangamepads() {
 
 window.addEventListener("gamepadconnected", connecthandler);
 window.addEventListener("gamepaddisconnected", disconnecthandler);
-if (navigator.webkitGetGamepads) {
+if (!haveEvents) {
   setInterval(scangamepads, 500);
 }
