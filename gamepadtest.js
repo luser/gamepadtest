@@ -33,8 +33,8 @@ function addgamepad(gamepad) {
   d.appendChild(b);
   var a = document.createElement("div");
   a.className = "axes";
-  for (var i=0; i<gamepad.axes.length; i++) {
-    var e = document.createElement("progress");
+  for (i=0; i<gamepad.axes.length; i++) {
+    e = document.createElement("progress");
     e.className = "axis";
     //e.id = "a" + i;
     e.setAttribute("max", "2");
@@ -59,9 +59,7 @@ function removegamepad(gamepad) {
 }
 
 function updateStatus() {
-  if (!haveEvents) {
-    scangamepads();
-  }
+  scangamepads();
   for (j in controllers) {
     var controller = controllers[j];
     var d = document.getElementById("controller" + j);
@@ -74,7 +72,7 @@ function updateStatus() {
         pressed = val.pressed;
         val = val.value;
       }
-      var pct = Math.round(val * 100) + "%"
+      var pct = Math.round(val * 100) + "%";
       b.style.backgroundSize = pct + " " + pct;
       if (pressed) {
         b.className = "button pressed";
@@ -106,8 +104,9 @@ function scangamepads() {
   }
 }
 
-window.addEventListener("gamepadconnected", connecthandler);
-window.addEventListener("gamepaddisconnected", disconnecthandler);
-if (!haveEvents) {
+if (haveEvents) {
+  window.addEventListener("gamepadconnected", connecthandler);
+  window.addEventListener("gamepaddisconnected", disconnecthandler);
+} else {
   setInterval(scangamepads, 500);
 }
