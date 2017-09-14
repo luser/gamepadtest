@@ -96,12 +96,8 @@ function updateStatus() {
 function scangamepads() {
   var gamepads = navigator.getGamepads ? navigator.getGamepads() : (navigator.webkitGetGamepads ? navigator.webkitGetGamepads() : []);
   for (var i = 0; i < gamepads.length; i++) {
-    if (gamepads[i]) {
-      if (!(gamepads[i].index in controllers)) {
-        addgamepad(gamepads[i]);
-      } else {
-        controllers[gamepads[i].index] = gamepads[i];
-      }
+    if (gamepads[i] && (gamepads[i].index in controllers)) {
+      controllers[gamepads[i].index] = gamepads[i];
     }
   }
 }
