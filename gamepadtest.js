@@ -35,11 +35,12 @@ function addgamepad(gamepad) {
   var a = document.createElement("div");
   a.className = "axes";
   for (i=0; i<gamepad.axes.length; i++) {
-    e = document.createElement("progress");
+    e = document.createElement("meter");
     e.className = "axis";
     //e.id = "a" + i;
-    e.setAttribute("max", "2");
-    e.setAttribute("value", "1");
+    e.setAttribute("min", "-1");
+    e.setAttribute("max", "1");
+    e.setAttribute("value", "0");
     e.innerHTML = i;
     a.appendChild(e);
   }
@@ -86,7 +87,7 @@ function updateStatus() {
     for (var i=0; i<controller.axes.length; i++) {
       var a = axes[i];
       a.innerHTML = i + ": " + controller.axes[i].toFixed(4);
-      a.setAttribute("value", controller.axes[i] + 1);
+      a.setAttribute("value", controller.axes[i]);
     }
   }
   rAF(updateStatus);
