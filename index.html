@@ -15,8 +15,12 @@ You should have received a copy of the CC0 Public Domain Dedication along with t
 -->
 <script type="text/javascript" src="gamepadtest.js"></script>
 <style>
-.buttons, .axes {
+.axes {
   padding: 1em;
+}
+
+.buttons {
+  margin-left: 1em;
 }
 
 /*meter*/.axis {
@@ -25,6 +29,9 @@ You should have received a copy of the CC0 Public Domain Dedication along with t
 }
 
 .button {
+  display: inline-block;
+  width: 1em;
+  text-align: center;
   padding: 1em;
   border-radius: 20px;
   border: 1px solid black;
@@ -36,6 +43,16 @@ You should have received a copy of the CC0 Public Domain Dedication along with t
 
 .pressed {
   border: 1px solid red;
+}
+
+.touched::after {
+  content: "touch";
+  display: block;
+  position: absolute;
+  margin-top: -0.2em;
+  margin-left: -0.5em;
+  font-size: 0.8em;
+  opacity: 0.7;
 }
 </style>
 </head>

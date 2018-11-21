@@ -70,16 +70,22 @@ function updateStatus() {
       var b = buttons[i];
       var val = controller.buttons[i];
       var pressed = val == 1.0;
+      var touched = false;
       if (typeof(val) == "object") {
         pressed = val.pressed;
+        if ('touched' in val) {
+          touched = val.touched;
+        }
         val = val.value;
       }
       var pct = Math.round(val * 100) + "%";
       b.style.backgroundSize = pct + " " + pct;
+      b.className = "button";
       if (pressed) {
-        b.className = "button pressed";
-      } else {
-        b.className = "button";
+        b.className += " pressed";
+      }
+      if (touched) {
+        b.className += " touched";
       }
     }
 
