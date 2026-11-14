@@ -1,14 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
+    <meta charset="utf-8">
+    <title>Gamepad API Tester v1.1</title>
 <!--
-
 Gamepad API Test
 
-Written in 2013 by Ted Mielczarek <ted@mielczarek.org>
+Version 1.1
+Program Gamepad API Test version 1.1 (index.html)
+Version date: 2026-11-14 by Jim Harris <jimrh@charter.net>
+Modification: Added descriptive labels to the axes and buttons.
 
-To the extent possible under law, the author(s) have dedicated all copyright and related and neighboring rights to this software to the public domain worldwide. This software is distributed without any warranty.
+Version 1.0
+Written in 2013 by Ted Mielczarek *et al* <ted@mielczarek.org>
+(Source: https://github.com/luser/gamepadtest)
+
+To the extent possible under law, the author(s) have dedicated all copyright and related and neighboring rights to this software to the public domain worldwide. This software is distributed without any warranty. The only request is to include this license notice, mark any changes made, and reatain attribution to prior authors.
 
 You should have received a copy of the CC0 Public Domain Dedication along with this software. If not, see <http://creativecommons.org/publicdomain/zero/1.0/>.
 
@@ -16,16 +23,34 @@ You should have received a copy of the CC0 Public Domain Dedication along with t
 <script type="text/javascript" src="gamepadtest.js"></script>
 <style>
 .axes {
-  padding: 1em;
+  padding: 0 1em;
 }
 
 .buttons {
   margin-left: 1em;
 }
 
-/*meter*/.axis {
+#start ~ div h2 {
+  margin-left: 1em;
+}
+
+#start ~ div h2.axes-heading {
+  margin-top: 1.5em;
+  margin-bottom: 0;
+}
+
+.axis-container {
+  display: inline-block;
+  margin: 0.25em 1em 1em;
+}
+
+.axis {
   min-width: 200px;
-  margin: 1em;
+}
+
+.axis-label {
+  display: block;
+  text-align: center;
 }
 
 .button {
@@ -58,6 +83,7 @@ You should have received a copy of the CC0 Public Domain Dedication along with t
 </head>
 <body>
 <h2 id="start">Press a button on your controller to start</h2>
-<a href="https://github.com/luser/gamepadtest"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png" alt="Fork me on GitHub"></a>
+<!-- <a href="https://github.com/luser/gamepadtest"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png" alt="Fork me on GitHub"></a>
+--->
 </body>
 </html>

@@ -1,11 +1,24 @@
 /*
  * Gamepad API Test
- * Written in 2013 by Ted Mielczarek <ted@mielczarek.org>
  *
- * To the extent possible under law, the author(s) have dedicated all copyright and related and neighboring rights to this software to the public domain worldwide. This software is distributed without any warranty.
+ * Program Gamepad API Test version 1.1 (gamepadtest.js)
+ *
+ * Version 1.1
+ * Version date: 2026-11-14 by Jim Harris <jimrh@charter.net>
+ * Modification: Added descriptive labels to the axes and buttons. 
+ *
+ * Version 1.0
+ * Written in 2013 by Ted Mielczarek *et al* <ted@mielczarek.org>
+ * (Source: https://github.com/luser/gamepadtest)
+ *
+ * To the extent possible under law, the author(s) have dedicated all copyright and related and
+ * neighboring rights to this software to the public domain worldwide. This software is distributed
+ * without any warranty. The only request is to include this license notice, mark any changes
+ * made, and retain attribution to prior authors.
  *
  * You should have received a copy of the CC0 Public Domain Dedication along with this software. If not, see <http://creativecommons.org/publicdomain/zero/1.0/>.
  */
+ 
 var haveEvents = 'GamepadEvent' in window;
 var haveWebkitEvents = 'WebKitGamepadEvent' in window;
 var controllers = {};
@@ -20,8 +33,11 @@ function addgamepad(gamepad) {
   controllers[gamepad.index] = gamepad; var d = document.createElement("div");
   d.setAttribute("id", "controller" + gamepad.index);
   var t = document.createElement("h1");
-  t.appendChild(document.createTextNode("gamepad: " + gamepad.id));
+  t.appendChild(document.createTextNode("Gamepad: " + gamepad.id));
   d.appendChild(t);
+  var buttonHeading = document.createElement("h2");
+  buttonHeading.appendChild(document.createTextNode("Buttons:"));
+  d.appendChild(buttonHeading);
   var b = document.createElement("div");
   b.className = "buttons";
   for (var i=0; i<gamepad.buttons.length; i++) {
@@ -32,17 +48,27 @@ function addgamepad(gamepad) {
     b.appendChild(e);
   }
   d.appendChild(b);
+  var axisHeading = document.createElement("h2");
+  axisHeading.className = "axes-heading";
+  axisHeading.appendChild(document.createTextNode("Axes:"));
+  d.appendChild(axisHeading);
   var a = document.createElement("div");
   a.className = "axes";
   for (i=0; i<gamepad.axes.length; i++) {
+    var axisContainer = document.createElement("span");
+    axisContainer.className = "axis-container";
     e = document.createElement("meter");
     e.className = "axis";
     //e.id = "a" + i;
     e.setAttribute("min", "-1");
     e.setAttribute("max", "1");
     e.setAttribute("value", "0");
-    e.innerHTML = i;
-    a.appendChild(e);
+    axisContainer.appendChild(e);
+    var label = document.createElement("span");
+    label.className = "axis-label";
+    label.textContent = "Axis " + i;
+    axisContainer.appendChild(label);
+    a.appendChild(axisContainer);
   }
   d.appendChild(a);
   document.getElementById("start").style.display = "none";
